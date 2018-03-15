@@ -11,16 +11,17 @@ public class Player {
 	private Deck deck;
 	private Hand hand;
 	private Cementery cementery;
-	private ArrayList<Card> cardInField;
+	private Card[] cardInField;
 
 	public Player(String name, int id) {
 		System.out.println("Inicio de " + name);
 		this.name = name;
 		this.idPlayer = id;
+		this.points = 2000;
 		deck = new Deck();
 		hand = new Hand();
 		cementery = new Cementery();
-		cardInField = new ArrayList<>();
+		cardInField = new Card[2];
 	}
 
 	public void addToHand() {
@@ -28,13 +29,49 @@ public class Player {
 	}
 
 	public void addToField(Card card) {
-		if (cardInField.size() < 2) {
+		if (cardInField[0] == null) {
 			hand.removeNode(card);
-			cardInField.add(card);
+			card.setIdCard((byte) 0);
+			if (!card.getStatusCard().equals(Status.RESUSCITATOR)) {
+				cardInField[0] = card;
+			} else {
+				cardInField[0] = cementery.dequeueCard();
+			}
+		} else if (cardInField[1] == null) {
+			hand.removeNode(card);
+			card.setIdCard((byte) 1);
+			if (!card.getStatusCard().equals(Status.RESUSCITATOR)) {
+				cardInField[1] = card;
+			} else {
+				cardInField[1] = cementery.dequeueCard();
+			}
 		}
 	}
 
+	public void addIdCard() {
+		int i = 0;
+		for (Card card : cardInField) {
+			System.out.println("Id de carta: " + i);
+			card.setIdCard((byte) i);
+			i++;
+		}
+	}
+
+	/**
+	 * 
+	 * @return la carta que se encuentra en el campo de batalla y que tiene el id
+	 *         especificado
+	 */
+	public Card getCardId(int id) {
+		for (Card card : cardInField) {
+			if (card.getIdCard() == id)
+				return card;
+		}
+		return null;
+	}
+
 	public void throwToCementery(Card card) {
+		cardInField[card.getIdCard()] = null;
 		cementery.addToQueue(card);
 	}
 
@@ -131,16 +168,8 @@ public class Player {
 	/**
 	 * @return the cardInField
 	 */
-	public ArrayList<Card> getCardInField() {
+	public Card[] getCardInField() {
 		return cardInField;
-	}
-
-	/**
-	 * @param cardInField
-	 *            the cardInField to set
-	 */
-	public void setCardInField(ArrayList<Card> cardInField) {
-		this.cardInField = cardInField;
 	}
 
 }

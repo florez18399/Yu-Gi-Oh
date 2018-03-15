@@ -11,5 +11,14 @@ public class Hand extends MyLinkedList<Card>{
 		if(size() < SIZE_CARD_HAND) {
 			addNode(new Node<Card>(card));
 		}
+		fillId();
 	}
+	
+	public void fillId() {
+		for (int i = 0; i < size()-1; i++) {
+			System.out.println("id" + i);
+			get(i).getInfo().setIdCard((byte)i);
+		}	
+	}
+	
 }

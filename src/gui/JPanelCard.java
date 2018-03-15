@@ -6,25 +6,29 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 import models.Card;
+import models.Status;
 
 public class JPanelCard extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Card card;
 
-	public JPanelCard(Dimension dimension) {
-		init(dimension);
+	public JPanelCard(Dimension dimension, int idPlayer) {
+		init(dimension, idPlayer);
 	}
 
-	public JPanelCard(Dimension dimension, Card card) {
+	public JPanelCard(Dimension dimension, Card card, int idPlayer) {
 		this.card = card;
-		init(dimension);
+		init(dimension, idPlayer);
 	}
 
-	private void init(Dimension dimension) {
+	private void init(Dimension dimension, int idPlayer) {
 		Dimension myDimension = new Dimension((int) dimension.getWidth() / 2, (int) dimension.getHeight());
 		setSize(myDimension);
 		setPreferredSize(myDimension);
+		if(card != null) {
+			setComponentPopupMenu(new JPopUpMenuStatusCard(idPlayer, card.getIdCard()));
+		}
 	}
 
 	@Override
@@ -39,8 +43,13 @@ public class JPanelCard extends JPanel {
 
 	private void drawCardData(Graphics graphics) {
 		if (card != null) {
-			graphics.drawString("Ataque: " + card.getAttack(), getWidth() / 4, getHeight() * 2 / 5);
-			graphics.drawString("Defensa: " + card.getDefense(), getWidth() / 4, getHeight() * 3 / 5);
+			if(!card.getStatusCard().equals(Status.RESUSCITATOR)) {
+				graphics.drawString("Ataque: " + card.getAttack(), getWidth() / 4, getHeight() * 2 / 5);
+				graphics.drawString("Defensa: " + card.getDefense(), getWidth() / 4, getHeight() * 3 / 5);
+			}else {
+				graphics.drawString("! CARTA", getWidth() / 5,getHeight() * 2 / 5);
+				graphics.drawString("RESUSCITADORA !", getWidth() / 5,getHeight() * 3 / 5);
+			}
 		}
 	}
 

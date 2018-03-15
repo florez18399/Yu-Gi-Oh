@@ -2,9 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
+import javax.swing.JOptionPane;
 import gui.JFrameMain;
 import models.Game;
 
@@ -43,40 +41,46 @@ public class ControllerGame implements ActionListener {
 
 		case THROW_CARD:
 			throwCard(commands);
+			break;
+
+		case CHANGE_STATUS_CARD:
+			changeStatusCard(commands);
+			break;
+
+		case ATTACK:
+			attack(commands);
+			break;
 		default:
 			break;
 		}
 	}
 
+	private void changeStatusCard(String[] commands) {
+		game.changeStatusCard(commands);
+	}
+
+	private void attack(String[] commands) {
+		game.attackCards(Integer.parseInt(commands[1]), Integer.parseInt(commands[2]));
+		frameMain.repaintComponents();
+	}
+
 	private void throwCard(String[] commands) {
-		if (commands[1].equals("1")) {
-			System.out.println("Lanza carta jugador 1");
-			game.getPlayerOne().addToField(frameMain.getCardChoosen(1));
-			frameMain.repaintCard(1, null);
-			frameMain.repaintComponents();
-		} else {
-			System.out.println("Lanza carta  jugador 2");
-			game.getPlayerTwo().addToField(frameMain.getCardChoosen(2));
-			frameMain.repaintCard(2, null);
-			frameMain.repaintComponents();
+		try {
+			game.throwCardPlayer(commands, frameMain.getCardChoosen(Integer.parseInt(commands[1])));
+		} catch (NullPointerException exception) {
+			JOptionPane.showMessageDialog(frameMain, "Escoge una carta por favor", "Carta nula",
+					JOptionPane.ERROR_MESSAGE);
 		}
+		frameMain.repaintCard(Integer.parseInt(commands[1]), null);
+		frameMain.repaintComponents();
 	}
 
 	private void getCardOfDeck(String[] commands) {
-		if (commands[1].equals("1")) {
-			game.getPlayerOne().addToHand();
-			frameMain.repaintComponents();
-		} else {
-			game.getPlayerTwo().addToHand();
-			frameMain.repaintComponents();
-		}
+		game.getCardOfDeck(commands);
+		frameMain.repaintComponents();
 	}
 
 	private void chooseCard(String string[]) {
-		if (string[1].equals("1")) {
-			frameMain.repaintCard(1, game.getPlayerOne().getHand().get(Integer.parseInt(string[2])).getInfo());
-		} else {
-			frameMain.repaintCard(2, game.getPlayerTwo().getHand().get(Integer.parseInt(string[2])).getInfo());
-		}
+		frameMain.repaintCard(Integer.parseInt(string[1]), game.getCardOfHand(string));
 	}
 }

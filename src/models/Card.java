@@ -5,6 +5,7 @@ public class Card {
 	private int attack;
 	private int defense;
 	private Status statusCard;
+	private byte idCard; 
 
 	public Card(String nameMonster, int attack, int defense) {
 		this.nameMonster = nameMonster;
@@ -16,6 +17,12 @@ public class Card {
 		nameMonster = "Carta";
 		attack = (int) (Math.random() * 100);
 		defense = (int) (Math.random() * 100);
+		this.statusCard = Status.ATTACKING;
+	}
+	
+	public Card(Status status) {
+		System.out.println(status);
+		this.statusCard = status;
 	}
 
 	public void showCardData() {
@@ -53,6 +60,7 @@ public class Card {
 	public void setAttack(int attack) {
 		this.attack = attack;
 	}
+	
 
 	/**
 	 * @return the defense
@@ -83,5 +91,21 @@ public class Card {
 	public void setStatusCard(Status statusCard) {
 		this.statusCard = statusCard;
 	}
+
+	/**
+	 * @return the idCard
+	 */
+	public byte getIdCard() {
+		return idCard;
+	}
+
+	/**
+	 * @param idCard the idCard to set
+	 */
+	public void setIdCard(byte idCard) {
+		this.idCard = idCard;
+	}
+	
+	
 
 }

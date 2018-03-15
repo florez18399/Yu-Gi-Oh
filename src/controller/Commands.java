@@ -1,9 +1,11 @@
 package controller;
 
 public enum Commands {
-	CHOOSE_CARD_("CHOOSE_CARD_", "Escoge esta carta", "Escoger esta carta de tu mano"), GET_CARD_OF_DECK(
-			"GET_CARD_OF_DECK", "Obtiene una carta de la baraja", "Pulsa para completar tus tres cartas"), THROW_CARD(
-					"THROW_CARD", "Lanzar la carta", "Lanza la carta al campo de juego");
+	CHOOSE_CARD_("CHOOSE_CARD_", "Escoge esta carta", "Escoger esta carta de tu mano"), 
+	GET_CARD_OF_DECK("GET_CARD_OF_DECK", "Obtiene una carta de la baraja","Pulsa para completar tus tres cartas"), 
+	THROW_CARD("THROW_CARD", "Lanzar la carta","Lanza la carta al campo de juego"), 
+	CHANGE_STATUS_CARD("CHANGE_STATUS_CARD","Cambia el estado de la carta", "Pon tu carta en ataque o en defensa, según lo necesites"),
+	ATTACK("ATTACK", "Atacar", "Ataca con esta carta");
 
 	private String command;
 	private String title;

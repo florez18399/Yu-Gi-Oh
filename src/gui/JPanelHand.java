@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import Utilities.MyUtilities;
 import controller.Commands;
 import controller.ControllerGame;
-import models.Hand;
 import models.Player;
 
 public class JPanelHand extends JPanel {
@@ -29,7 +28,7 @@ public class JPanelHand extends JPanel {
 
 	public void addCards() {
 		removeAll();
-		Dimension dimensionCards = new Dimension(this.getPreferredSize().width / 3, this.getPreferredSize().height);
+		Dimension dimensionCards = new Dimension(this.getPreferredSize().width / 3, this.getPreferredSize().height-20);
 		int i = 1;
 		while (player.getHand().get(i) != null) {
 			JButton buttonCard1 = MyUtilities.getInstance().getButton(

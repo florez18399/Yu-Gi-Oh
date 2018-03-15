@@ -1,13 +1,10 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
-
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import models.Card;
@@ -27,7 +24,6 @@ public class JPanelMain extends JPanel {
 
 	private void init(Dimension dimension) {
 		setSize(dimension);
-		setBorder(BorderFactory.createLineBorder(Color.RED));
 		setLayout(new GridLayout(2, 1));
 
 		panelPlayer1 = new JPanelPlayer(getSize(), game.getPlayerOne());
