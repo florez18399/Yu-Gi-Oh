@@ -17,6 +17,7 @@ public class JPanelCardInField extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private int idPlayer;
 	private Card card;
+	private JButton buttonAttack;
 
 	public JPanelCardInField(int idPlayer, Card card, Dimension dimension) {
 		this.card = card;
@@ -32,7 +33,7 @@ public class JPanelCardInField extends JPanel {
 		setLayout(new FlowLayout());
 		add(new JPanelCard(dimensionCards, card, idPlayer), BorderLayout.CENTER);
 
-		JButton buttonAttack = new JButton(Commands.ATTACK.getTitle());
+		buttonAttack = new JButton(Commands.ATTACK.getTitle());
 		buttonAttack.setBackground(Color.BLACK);
 		buttonAttack.setBorderPainted(false);
 		buttonAttack.setForeground(Color.WHITE);
@@ -43,6 +44,9 @@ public class JPanelCardInField extends JPanel {
 		buttonAttack.setActionCommand(Commands.ATTACK.getCommand() + "/" + idPlayer + "/" + card.getIdCard());
 		buttonAttack.addActionListener(ControllerGame.getInstance());
 		add(buttonAttack);
-
+	}
+	
+	public void enabledButton() {
+		buttonAttack.setEnabled(!buttonAttack.isEnabled());
 	}
 }

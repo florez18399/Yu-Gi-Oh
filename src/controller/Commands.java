@@ -5,7 +5,8 @@ public enum Commands {
 	GET_CARD_OF_DECK("GET_CARD_OF_DECK", "Obtiene una carta de la baraja","Pulsa para completar tus tres cartas"), 
 	THROW_CARD("THROW_CARD", "Lanzar la carta","Lanza la carta al campo de juego"), 
 	CHANGE_STATUS_CARD("CHANGE_STATUS_CARD","Cambia el estado de la carta", "Pon tu carta en ataque o en defensa, según lo necesites"),
-	ATTACK("ATTACK", "Atacar", "Ataca con esta carta");
+	ATTACK("ATTACK", "Atacar", "Ataca con esta carta"),
+	INIT_BATTLE("INIT_BATTLE", "Iniciar batalla", "!Inicia el juego!");
 
 	private String command;
 	private String title;

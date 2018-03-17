@@ -1,10 +1,10 @@
 package test;
 
-import gui.JFrameMain;
-import models.Game;
+import gui.JDialogInit;
 
 public class TestGUI {
 	public static void main(String[] args) {
-		JFrameMain frameMain = new JFrameMain(new Game());
+		JDialogInit dialogInit = new JDialogInit();
+		dialogInit.setVisible(true);
 	}
 }

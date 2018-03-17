@@ -62,13 +62,9 @@ public class JPanelPlayer extends JPanel {
 		add(panelCenter, BorderLayout.CENTER);
 	}
 	
-	// private JPanel addPanelAttack() {
-	// JPanel panel = new JPanel();
-	// panel.setSize(new Dimension(100, 25));
-	// panel.setOpaque(false);
-	// panel.add(new JButton("Atacar"));
-	// return panel;
-	// }
+	public void enabledPanel() {
+		setEnabled(!isEnabled());
+	}
 	
 	private void addPanelCard() {
 		JPanel panel = new JPanel(new BorderLayout());

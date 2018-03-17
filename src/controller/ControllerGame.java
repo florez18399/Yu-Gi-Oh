@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+
+import gui.JDialogInit;
 import gui.JFrameMain;
 import models.Game;
 
@@ -10,6 +12,7 @@ public class ControllerGame implements ActionListener {
 	private static ControllerGame controllerGame;
 	private Game game;
 	private JFrameMain frameMain;
+	private JDialogInit dialogInit;
 
 	private ControllerGame() {
 	}
@@ -21,9 +24,13 @@ public class ControllerGame implements ActionListener {
 		return controllerGame;
 	}
 
-	public void initComponents() {
-		game = new Game();
+	private void initComponents(String [] names) {
+		game = new Game(names);
 		frameMain = new JFrameMain(game);
+	}
+	
+	public void initGame() {
+		dialogInit = new JDialogInit();
 	}
 
 	@Override
@@ -32,7 +39,6 @@ public class ControllerGame implements ActionListener {
 		switch (Commands.valueOf(commands[0])) {
 		case CHOOSE_CARD_:
 			chooseCard(commands);
-
 			break;
 
 		case GET_CARD_OF_DECK:
@@ -50,6 +56,12 @@ public class ControllerGame implements ActionListener {
 		case ATTACK:
 			attack(commands);
 			break;
+			
+		case INIT_BATTLE: 
+			System.out.println("Inicia el juego");
+			initComponents(dialogInit.getNamesPlayers());
+			dialogInit.setVisible(false);
+			break;
 		default:
 			break;
 		}
@@ -60,8 +72,13 @@ public class ControllerGame implements ActionListener {
 	}
 
 	private void attack(String[] commands) {
+		try {
 		game.attackCards(Integer.parseInt(commands[1]), Integer.parseInt(commands[2]));
-		frameMain.repaintComponents();
+		}catch (NullPointerException e){
+			JOptionPane.showMessageDialog(frameMain, "Espera a que el rival coloque una carta", "Carta nula",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		checkWinner();
 	}
 
 	private void throwCard(String[] commands) {
@@ -83,4 +100,20 @@ public class ControllerGame implements ActionListener {
 	private void chooseCard(String string[]) {
 		frameMain.repaintCard(Integer.parseInt(string[1]), game.getCardOfHand(string));
 	}
+	
+	private void checkWinner() {
+		if(game.getPlayerOne().getPoints() < 0) {
+			JOptionPane.showMessageDialog(dialogInit, "Ganador: " + game.getPlayerTwo().getName());
+			frameMain.setVisible(false);
+			dialogInit = new JDialogInit();
+		}else if(game.getPlayerTwo().getPoints() < 0) {
+			JOptionPane.showMessageDialog(dialogInit, "Ganador: " + game.getPlayerOne().getName());
+			frameMain.setVisible(false);
+			dialogInit = new JDialogInit();
+		}else {
+			frameMain.changeTurn();
+			frameMain.repaintComponents();
+		}
+	}
+	
 }

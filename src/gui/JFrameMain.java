@@ -46,4 +46,8 @@ public class JFrameMain extends JFrame {
 		return panelMain.getCardChoosen(idPlayer);
 	}
 
+	public void changeTurn() {
+		panelMain.changeTurn();
+	}
+	
 }

@@ -28,7 +28,7 @@ public class JPanelMain extends JPanel {
 
 		panelPlayer1 = new JPanelPlayer(getSize(), game.getPlayerOne());
 		panelPlayer2 = new JPanelPlayer(getSize(), game.getPlayerTwo());
-
+		panelPlayer2.enabledPanel();
 		add(panelPlayer1);
 		add(panelPlayer2);
 
@@ -62,6 +62,11 @@ public class JPanelMain extends JPanel {
 		}else {
 			return panelPlayer2.getCardChoosen();
 		}
+	}
+
+	public void changeTurn() {
+		panelPlayer1.enabledPanel();
+		panelPlayer2.enabledPanel();
 	}
 
 }

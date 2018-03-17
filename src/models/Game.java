@@ -9,6 +9,11 @@ public class Game {
 		this.playerTwo = new Player("Player 2", 2);
 	}
 
+	public Game(String[] names) {
+		this.playerOne = new Player(names[0], 1);
+		this.playerTwo = new Player(names[1], 2);
+	}
+
 	public void attackCards(int idAttackPlayer, int idCard) {
 		Player attackPlayer;
 		Player defensePlayer;
