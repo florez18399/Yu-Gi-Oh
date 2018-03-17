@@ -81,9 +81,7 @@ public class Game {
 	}
 
 	public Player getPlayerforId(int id) {
-		if (id == 1)
-			return playerOne;
-		return playerTwo;
+		return id == 1 ? playerOne : playerTwo; 
 	}
 
 	public void getCardOfDeck(String[] commands) {

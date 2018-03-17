@@ -30,7 +30,6 @@ public class JPanelPlayer extends JPanel {
 		setBorder(BorderFactory.createLineBorder(Color.BLUE));
 		setLayout(new BorderLayout());
 		addInfo();
-
 		JButtonDeck buttonDeck = new JButtonDeck(getSize());
 		buttonDeck.addActionListener(ControllerGame.getInstance());
 		buttonDeck.setActionCommand(Commands.GET_CARD_OF_DECK + "/" + player.getIdPlayer());
@@ -42,7 +41,7 @@ public class JPanelPlayer extends JPanel {
 
 	private void addInfo() {
 		panelInfoPlayer = new JPanelInfoPlayer(player, getSize());
-		if(player.getIdPlayer() == 1) 
+		if (player.getIdPlayer() == 1)
 			add(panelInfoPlayer, BorderLayout.NORTH);
 		else
 			add(panelInfoPlayer, BorderLayout.SOUTH);
@@ -53,24 +52,23 @@ public class JPanelPlayer extends JPanel {
 		panelBattleField = new JPanelBattleField(player.getCardInField(), player.getIdPlayer());
 		panelHand = new JPanelHand(panelCenter.getSize(), player);
 		panelCenter.add(panelHand, BorderLayout.CENTER);
-		if(player.getIdPlayer() == 1) {
+		if (player.getIdPlayer() == 1) {
 			panelCenter.add(panelBattleField, BorderLayout.SOUTH);
-		}else {
+		} else {
 			panelCenter.add(panelBattleField, BorderLayout.NORTH);
 		}
 		panelCenter.setOpaque(false);
 		add(panelCenter, BorderLayout.CENTER);
 	}
-	
+
 	public void enabledPanel() {
 		setEnabled(!isEnabled());
 	}
-	
+
 	private void addPanelCard() {
 		JPanel panel = new JPanel(new BorderLayout());
 		panelCard = new JPanelCard(getSize(), player.getIdPlayer());
 		panel.add(panelCard, BorderLayout.CENTER);
-
 		JButton buttonAddCard = MyUtilities.getInstance().getButton(
 				Commands.THROW_CARD.getCommand() + "/" + player.getIdPlayer(), Commands.THROW_CARD.getDescription(),
 				new Dimension(50, 40));
@@ -87,13 +85,13 @@ public class JPanelPlayer extends JPanel {
 		panelHand.addCards();
 		panelBattleField.addPanelCards();
 		panelInfoPlayer.repaintPoints();
-		
+
 	}
 
 	public void setCardPanel(Card card) {
 		panelCard.setCard(card);
 	}
-	
+
 	public Card getCardChoosen() {
 		return panelCard.getCard();
 	}

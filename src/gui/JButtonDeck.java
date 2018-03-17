@@ -16,7 +16,7 @@ public class JButtonDeck extends JButton {
 	}
 
 	private void init(Dimension dimension) {
-		Dimension myDimension = new Dimension((int)dimension.getWidth()/2, (int)dimension.getHeight()/4);
+		Dimension myDimension = new Dimension((int) dimension.getWidth() / 2, (int) dimension.getHeight() / 4);
 		ImageIcon imageIcon = MyUtilities.getInstance().getScaledInstance(myDimension, ConstantGUI.DECK_ICON);
 		setIcon(imageIcon);
 		setPreferredSize(myDimension);

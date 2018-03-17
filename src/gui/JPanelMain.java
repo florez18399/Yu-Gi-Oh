@@ -25,13 +25,11 @@ public class JPanelMain extends JPanel {
 	private void init(Dimension dimension) {
 		setSize(dimension);
 		setLayout(new GridLayout(2, 1));
-
 		panelPlayer1 = new JPanelPlayer(getSize(), game.getPlayerOne());
 		panelPlayer2 = new JPanelPlayer(getSize(), game.getPlayerTwo());
 		panelPlayer2.enabledPanel();
 		add(panelPlayer1);
 		add(panelPlayer2);
-
 	}
 
 	@Override
@@ -57,9 +55,9 @@ public class JPanelMain extends JPanel {
 	}
 
 	public Card getCardChoosen(int idPlayer) {
-		if(idPlayer == 1) {
+		if (idPlayer == 1) {
 			return panelPlayer1.getCardChoosen();
-		}else {
+		} else {
 			return panelPlayer2.getCardChoosen();
 		}
 	}

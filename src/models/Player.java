@@ -1,7 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-
 public class Player {
 	public final static int SIZE_CARDS_FIELD = 2;
 
@@ -14,7 +12,6 @@ public class Player {
 	private Card[] cardInField;
 
 	public Player(String name, int id) {
-		System.out.println("Inicio de " + name);
 		this.name = name;
 		this.idPlayer = id;
 		this.points = 2000;

@@ -24,11 +24,11 @@ public class ControllerGame implements ActionListener {
 		return controllerGame;
 	}
 
-	private void initComponents(String [] names) {
+	private void initComponents(String[] names) {
 		game = new Game(names);
 		frameMain = new JFrameMain(game);
 	}
-	
+
 	public void initGame() {
 		dialogInit = new JDialogInit();
 	}
@@ -56,15 +56,18 @@ public class ControllerGame implements ActionListener {
 		case ATTACK:
 			attack(commands);
 			break;
-			
-		case INIT_BATTLE: 
-			System.out.println("Inicia el juego");
-			initComponents(dialogInit.getNamesPlayers());
-			dialogInit.setVisible(false);
+
+		case INIT_BATTLE:
+			initBattle();
 			break;
 		default:
 			break;
 		}
+	}
+
+	private void initBattle() {
+		initComponents(dialogInit.getNamesPlayers());
+		dialogInit.setVisible(false);
 	}
 
 	private void changeStatusCard(String[] commands) {
@@ -73,8 +76,8 @@ public class ControllerGame implements ActionListener {
 
 	private void attack(String[] commands) {
 		try {
-		game.attackCards(Integer.parseInt(commands[1]), Integer.parseInt(commands[2]));
-		}catch (NullPointerException e){
+			game.attackCards(Integer.parseInt(commands[1]), Integer.parseInt(commands[2]));
+		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(frameMain, "Espera a que el rival coloque una carta", "Carta nula",
 					JOptionPane.ERROR_MESSAGE);
 		}
@@ -100,20 +103,20 @@ public class ControllerGame implements ActionListener {
 	private void chooseCard(String string[]) {
 		frameMain.repaintCard(Integer.parseInt(string[1]), game.getCardOfHand(string));
 	}
-	
+
 	private void checkWinner() {
-		if(game.getPlayerOne().getPoints() < 0) {
+		if (game.getPlayerOne().getPoints() < 0) {
 			JOptionPane.showMessageDialog(dialogInit, "Ganador: " + game.getPlayerTwo().getName());
 			frameMain.setVisible(false);
 			dialogInit = new JDialogInit();
-		}else if(game.getPlayerTwo().getPoints() < 0) {
+		} else if (game.getPlayerTwo().getPoints() < 0) {
 			JOptionPane.showMessageDialog(dialogInit, "Ganador: " + game.getPlayerOne().getName());
 			frameMain.setVisible(false);
 			dialogInit = new JDialogInit();
-		}else {
+		} else {
 			frameMain.changeTurn();
 			frameMain.repaintComponents();
 		}
 	}
-	
+
 }

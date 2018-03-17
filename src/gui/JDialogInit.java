@@ -25,9 +25,7 @@ public class JDialogInit extends JDialog {
 	}
 
 	public String[] getNamesPlayers() {
-		System.out.println("entra enviar");
 		String names[] = { panelAddInfo.getNamePlayerOne(), panelAddInfo.getNamePlayerTwo() };
-		System.out.println(names.toString() + "Nombres");
 		return names;
 	}
 

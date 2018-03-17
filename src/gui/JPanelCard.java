@@ -26,7 +26,7 @@ public class JPanelCard extends JPanel {
 		Dimension myDimension = new Dimension((int) dimension.getWidth() / 2, (int) dimension.getHeight());
 		setSize(myDimension);
 		setPreferredSize(myDimension);
-		if(card != null) {
+		if (card != null) {
 			setComponentPopupMenu(new JPopUpMenuStatusCard(idPlayer, card.getIdCard()));
 		}
 	}
@@ -43,12 +43,12 @@ public class JPanelCard extends JPanel {
 
 	private void drawCardData(Graphics graphics) {
 		if (card != null) {
-			if(!card.getStatusCard().equals(Status.RESUSCITATOR)) {
+			if (!card.getStatusCard().equals(Status.RESUSCITATOR)) {
 				graphics.drawString("Ataque: " + card.getAttack(), getWidth() / 4, getHeight() * 2 / 5);
 				graphics.drawString("Defensa: " + card.getDefense(), getWidth() / 4, getHeight() * 3 / 5);
-			}else {
-				graphics.drawString("! CARTA", getWidth() / 5,getHeight() * 2 / 5);
-				graphics.drawString("RESUSCITADORA !", getWidth() / 5,getHeight() * 3 / 5);
+			} else {
+				graphics.drawString("! CARTA", getWidth() / 5, getHeight() * 2 / 5);
+				graphics.drawString("RESUSCITADORA !", getWidth() / 5, getHeight() * 3 / 5);
 			}
 		}
 	}

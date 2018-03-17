@@ -17,11 +17,10 @@ public class Deck extends MyStack<Card> {
 
 	public void fillDeckRandom() {
 		for (int i = 0; i < SIZE_DECK; i++) {
-			if (i != 5 & i != 10 & i != 15) {
+			if (i != 5 & i != 10 & i != 15)
 				addToDeck(new Card());
-			}else {
+			else
 				addToDeck(new Card(Status.RESUSCITATOR));
-			}
 		}
 	}
 }

@@ -26,13 +26,21 @@ public class JPanelCardInField extends JPanel {
 	}
 
 	private void init(Dimension dimension) {
-		Dimension dimensionCards = new Dimension((int)dimension.getWidth(), (int)dimension.getHeight()-40);
+		Dimension dimensionCards = new Dimension((int) dimension.getWidth(), (int) dimension.getHeight() - 40);
 		setSize(dimension);
 		setPreferredSize(dimension);
 		setOpaque(false);
 		setLayout(new FlowLayout());
 		add(new JPanelCard(dimensionCards, card, idPlayer), BorderLayout.CENTER);
+		initButtonAttack(dimension);
+		add(buttonAttack);
+	}
 
+	public void enabledButton() {
+		buttonAttack.setEnabled(!buttonAttack.isEnabled());
+	}
+
+	private void initButtonAttack(Dimension dimension) {
 		buttonAttack = new JButton(Commands.ATTACK.getTitle());
 		buttonAttack.setBackground(Color.BLACK);
 		buttonAttack.setBorderPainted(false);
@@ -40,13 +48,8 @@ public class JPanelCardInField extends JPanel {
 		buttonAttack.setFont(new Font("Times New Roman", Font.CENTER_BASELINE, 15));
 		buttonAttack.setIcon(new ImageIcon(getClass().getResource("/images/attack.png")));
 		buttonAttack.setFocusable(true);
-		buttonAttack.setPreferredSize(new Dimension((int)dimension.getWidth()/2, 30));
+		buttonAttack.setPreferredSize(new Dimension((int) dimension.getWidth() / 2, 30));
 		buttonAttack.setActionCommand(Commands.ATTACK.getCommand() + "/" + idPlayer + "/" + card.getIdCard());
 		buttonAttack.addActionListener(ControllerGame.getInstance());
-		add(buttonAttack);
-	}
-	
-	public void enabledButton() {
-		buttonAttack.setEnabled(!buttonAttack.isEnabled());
 	}
 }

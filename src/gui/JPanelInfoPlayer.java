@@ -36,7 +36,7 @@ public class JPanelInfoPlayer extends JPanel {
 		labelPoints.setPreferredSize(myDimension);
 		add(labelPoints);
 	}
-	
+
 	public void repaintPoints() {
 		labelPoints.setText("Puntos: " + player.getPoints());
 		repaint();

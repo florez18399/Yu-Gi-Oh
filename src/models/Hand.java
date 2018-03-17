@@ -20,5 +20,4 @@ public class Hand extends MyLinkedList<Card>{
 			get(i).getInfo().setIdCard((byte)i);
 		}	
 	}
-	
 }
